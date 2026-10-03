@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartDrop – send files device to device</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+
+  <header class="top">
+    <h1>SmartDrop</h1>
+    <span id="status" class="badge" data-state="disconnected" role="status">
+      <i aria-hidden="true"></i><b>Disconnected</b>
+    </span>
+  </header>
+
+  <main class="grid">
+    <section class="panel" aria-labelledby="mine">
+      <h2 id="mine">Your code</h2>
+      <div class="idrow">
+        <output id="myId" class="peer-id">Starting…</output>
+        <button id="copyBtn" class="ghost" type="button">Copy</button>
+      </div>
+      <img id="qr" class="qr" width="180" height="180" hidden
+           alt="QR code that opens SmartDrop and connects to this device">
+      <p class="hint">Scan the QR code on another device, or share the code.</p>
+
+      <h2>Connect to a device</h2>
+      <div class="connect">
+        <input id="targetId" placeholder="sd-xxxxxx" autocomplete="off" autocapitalize="off"
+               spellcheck="false" aria-label="Code of the other device">
+        <button id="connectBtn" class="primary" type="button">Connect</button>
+      </div>
+      <p id="msg" class="hint" role="status"></p>
+    </section>
+
+    <section class="panel wide" aria-labelledby="send">
+      <h2 id="send">Send files</h2>
+      <div id="drop" class="drop" tabindex="0" role="button" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/>
+        </svg>
+        <p><strong>Drop files here</strong> or click to choose</p>
+        <small id="dropNote">Connect to a device first</small>
+        <input id="fileInput" type="file" multiple hidden>
+      </div>
+      <ul id="transfers" class="transfers" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
